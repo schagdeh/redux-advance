@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import CounterOutput from '../../components/CounterOutput'
 import CounterControl from '../../components/CounterControl'
+import { connect } from 'react-redux'
 
 class Counter extends Component {
   render () {
     return (
       <div>
-        <CounterOutput />
+        <CounterOutput count={this.props.counter}/>
         <CounterControl label='Increment' />
         <CounterControl label='Decrement' />
         <CounterControl label='Add 10' />
@@ -15,5 +16,10 @@ class Counter extends Component {
     )
   }
 }
+const mapStateToProps = state => {
+  return {
+    counter: state.counter
+  }
+}
 
-export default Counter
+export default connect(mapStateToProps)(Counter)
